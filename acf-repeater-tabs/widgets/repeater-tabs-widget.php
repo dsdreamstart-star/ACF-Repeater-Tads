@@ -57,9 +57,11 @@ class Elementor_ACF_Repeater_Tabs_Widget extends \Elementor\Widget_Base {
             'tab_content_template',
             [
                 'label' => __( 'Tab Content Template', 'acf-repeater-tabs' ),
-                'type' => \Elementor\Controls_Manager::SELECT2,
+                'type' => \Elementor\Controls_Manager::QUERY,
                 'label_block' => true,
-                'options' => $this->get_elementor_templates(),
+                'query' => [
+                    'post_type' => 'elementor_library',
+                ],
                 'description' => __( 'Select an Elementor template for the tab content.', 'acf-repeater-tabs' ),
             ]
         );
@@ -277,22 +279,5 @@ class Elementor_ACF_Repeater_Tabs_Widget extends \Elementor\Widget_Base {
         }
     }
 
-    private function get_elementor_templates() {
-        $options = [];
-        if ( ! class_exists( '\Elementor\Plugin' ) ) return $options;
-
-        $templates = \Elementor\Plugin::$instance->templates_manager->get_source( 'local' )->get_items([
-            'type' => 'section', // You can also use 'page' or 'widget'
-        ]);
-
-        if ( empty( $templates ) ) {
-            return $options;
-        }
-
-        foreach ( $templates as $template ) {
-            $options[ $template['template_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
-        }
-
-        return $options;
-    }
+    
 }
