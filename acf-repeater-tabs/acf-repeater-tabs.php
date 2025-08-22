@@ -3,7 +3,7 @@
  * Plugin Name: ACF Repeater Tabs
  * Description: An Elementor widget to display ACF Repeater fields as tabs.
  * Plugin URI:  https://example.com/
- * Version:     1.0.0
+ * Version:     1.0.２
  * Author:      Gemini
  * Author URI:  https://google.com
  * Text Domain: acf-repeater-tabs
